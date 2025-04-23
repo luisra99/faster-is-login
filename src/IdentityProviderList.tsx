@@ -13,6 +13,7 @@ import {
   useTheme,
   styled,
   Divider,
+  SxProps,
 } from "@mui/material";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
@@ -27,6 +28,9 @@ export interface IdentityProviderListProps {
   localAuth?: boolean;
   redirectPath: string;
   specific?: boolean;
+  containerSx?: SxProps;
+  cardsSx?: SxProps;
+  buttonSx?: SxProps;
 }
 
 const ProviderCard = styled(Card)(({ theme }) => ({
@@ -50,6 +54,9 @@ const IdentityProviderList: React.FC<IdentityProviderListProps> = ({
   redirectPath,
   localAuth = false,
   specific = false,
+  buttonSx,
+  cardsSx,
+  containerSx,
 }) => {
   const [providers, setProviders] = useState<IdentityProvider[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -100,7 +107,7 @@ const IdentityProviderList: React.FC<IdentityProviderListProps> = ({
   };
 
   const renderProviderItem = (provider: IdentityProvider) => (
-    <ProviderCard key={provider.is}>
+    <ProviderCard key={provider.is} sx={cardsSx}>
       <CardActionArea
         onClick={() => login(provider)}
         disabled={isLoggingIn}
@@ -146,7 +153,7 @@ const IdentityProviderList: React.FC<IdentityProviderListProps> = ({
   );
 
   const renderProviderList = () => (
-    <Stack spacing={1} sx={{ width: "100%" }}>
+    <Stack spacing={1} sx={{ width: "100%", ...containerSx }}>
       {providers.map(renderProviderItem)}
     </Stack>
   );
@@ -228,6 +235,7 @@ const IdentityProviderList: React.FC<IdentityProviderListProps> = ({
             alignItems: "center",
             justifyContent: "center",
             position: "relative",
+            ...buttonSx,
           }}
         >
           {isLoggingIn && (

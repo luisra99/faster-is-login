@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "dist/types",
+     "declaration": true,
+    "declarationDir": "./dist",
     "emitDeclarationOnly": true,
-    "outDir": "dist",
-    "target": "ESNext",
-    "lib": ["DOM", "ESNext"],
-    "jsx": "react-jsx",
+    "outDir": "./dist",
     "module": "ESNext",
+    "target": "ESNext",
     "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "declarationMap": true,
+    "lib": ["DOM", "ESNext"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "isolatedModules": true
+    "isolatedModules": true,
   },
   "include": ["src"]
 }
